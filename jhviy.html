@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRIAZ FOOTBALL</title>
+    <link rel="stylesheet" href="styles.css">
+<style type="text/css" id="dcoder_stylesheet">body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: FF 00 00;
+    text-decoration: none;
+}
+
+main {
+    padding: 20px;
+}
+
+.news {
+    display: flex;
+    justify-content: space-between;
+}
+
+article {
+    width: 45%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.old-news {
+    margin-top: 20px;
+}
+
+.old-news article {
+    background-color: #f0f0f0;
+    color: #555;
+}
+</style></head>
+<body>
+    <header>
+        <h1>Welcome to IRIAZ FOOTBALL</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">News</a></li>
+                <li><a href="#">Scores</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="news" id="current-news">
+            <article>
+                <h2>Breaking Football News 1</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </article>
+            <article>
+                <h2>Breaking Football News 2</h2>
+                <p>Sed et velit gravida, vestibulum velit id, malesuada quam.</p>
+            </article>
+        </section>
+        <section class="old-news" id="old-news">
+            <!-- Old news articles will be added here after 3 days -->
+        </section>
+    </main>
+    <footer>
+        <p>© 2024 IRIAZ FOOTBALL. All rights reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+
+<script type="text/javascript" id="dcoder_script">document.addEventListener("DOMContentLoaded", function() {
+    // Function to move old news after 5 days
+    function moveOldNews() {
+        const currentNewsSection = document.getElementById("current-news");
+        const oldNewsSection = document.getElementById("old-news");
+        
+        // Move articles from current news to old news
+        while (currentNewsSection.firstChild) {
+            const article = currentNewsSection.removeChild(currentNewsSection.firstChild);
+            oldNewsSection.appendChild(article);
+        }
+    }
+
+    // Function to add timestamp to news articles
+    function addTimestamp() {
+        const currentNewsSection = document.getElementById("current-news");
+        const articles = currentNewsSection.querySelectorAll("article");
+        const currentTime = new Date();
+        
+        articles.forEach(article => {
+            const timestamp = document.createElement("p");
+            timestamp.textContent = "Published: " + currentTime.toLocaleString();
+            article.appendChild(timestamp);
+        });
+    }
+
+    // Call addTimestamp function to add timestamp to news articles
+    addTimestamp();
+
+    // Call moveOldNews function after 5 days
+    setTimeout(function() {
+        addTimestamp(); // Update timestamp before moving articles
+        moveOldNews();
+    }, 5 * 24 * 60 * 60 * 1000); // 5 days in milliseconds
+});
+</script></body></html>
